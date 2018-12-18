@@ -7,6 +7,8 @@ import model.PlayerType;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
@@ -39,7 +41,7 @@ public class View {
         frame.setMinimumSize(new Dimension(640, 480)); //TODO view ist in breite gezogen
 
         gamePanel = getFieldView(model);
-        //gamePanel.setPreferredSize(new Dimension(100, 100));
+        gamePanel.setPreferredSize(new Dimension(200, 200));
         frame.add(gamePanel);
         generateControlBar();
         //frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //Fullscreen
@@ -55,6 +57,14 @@ public class View {
 
     private JPanel getFieldView(Game model) {
         JPanel field = new JPanel();
+        final JPanel container = new JPanel(new FlowLayout());
+        container.add(field);
+        container.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                resizePreview(field, container);
+            }
+        });
         LayoutManager grid = new GridLayout(FIELDSIZE, FIELDSIZE);
         field.setLayout(grid);
         int humanFighters = model.getP1().getCurrentGroupSize();
@@ -89,7 +99,15 @@ public class View {
                 field.add(fpv);
             }
         }
-        return field;
+        return container;
+    }
+
+    private static void resizePreview(JPanel innerPanel, JPanel container) {
+        int w = container.getWidth();
+        int h = container.getHeight();
+        int size =  Math.min(w, h);
+        innerPanel.setPreferredSize(new Dimension(size, size));
+        container.revalidate();
     }
 
 
