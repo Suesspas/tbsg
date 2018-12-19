@@ -39,6 +39,7 @@ public class View {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(640, 480));
 
+        Assets.init();
         gamePanel = getFieldView(model);
         gamePanel.setPreferredSize(new Dimension(200, 200));
         frame.add(gamePanel);

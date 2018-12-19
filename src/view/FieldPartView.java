@@ -31,18 +31,19 @@ public class FieldPartView extends JPanel{
         int len = this.getWidth() - (2 * start);
         if (owner == PlayerType.Human) {
             //setForeground(Color.BLUE);
-            g.setColor(Color.BLUE);
-            g.fillOval(start, start, len, len);
+            //g.setColor(Color.BLUE);
+            //g.fillOval(start, start, len, len);
             g.setColor(Color.RED);
-            drawFighter(g, start, len);
+            drawHPbar(g, start, len);
+            g.drawImage(Assets.player, len/6, -len/5, this.getWidth()-len/5, this.getHeight()-len/10,null);
         } else if (owner == PlayerType.Bot){
             setForeground(Color.RED);
             g.fillOval(start, start, len, len);
-            drawFighter(g, start, len);
+            drawHPbar(g, start, len);
         }
     }
 
-    private void drawFighter(Graphics g, int start, int len) {
+    private void drawHPbar(Graphics g, int start, int len) {
         double hpPercent = fighter.getHp()/fighter.getMaxHp();
         g.fillRect(start, start + len + len/10, (int)(len*hpPercent), len*23/100);
         g.setColor(Color.BLACK);
