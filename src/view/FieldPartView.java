@@ -37,9 +37,11 @@ public class FieldPartView extends JPanel{
             drawHPbar(g, start, len);
             g.drawImage(Assets.player, len/6, -len/5, this.getWidth()-len/5, this.getHeight()-len/10,null);
         } else if (owner == PlayerType.Bot){
-            setForeground(Color.RED);
-            g.fillOval(start, start, len, len);
+            //setForeground(Color.RED);
+            //g.fillOval(start, start, len, len);
+            g.setColor(Color.RED);
             drawHPbar(g, start, len);
+            g.drawImage(Assets.enemy, 0, -len/5, this.getWidth()-len/5, this.getHeight()-len/10,null);
         }
     }
 

@@ -6,12 +6,14 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
     public static BufferedImage player;
+    public static BufferedImage enemy;
 
     public static void init(){
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/resources/images/LightBandit_Spritesheet.png"));
-
+        SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/resources/images/HeavyBandit_Spritesheet.png"));
         player = sheet.crop(0, 0, 48, 48);
         player = flipImage(player);
+        enemy = sheet2.crop(0, 0, 48, 48);
 
     }
 
