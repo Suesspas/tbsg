@@ -17,8 +17,4 @@ public class FieldTile {
     public Fighter getFighter() {
         return fighter;
     }
-
-    public void setFighter(Fighter fighter) {
-        this.fighter = fighter;
-    }
 }

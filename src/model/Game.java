@@ -134,6 +134,12 @@ public class Game {
         return field.getFighterFromPosition(x, y);
     }
 
+    //TODO abprüfung auf maximale Laufreichweite
+    public void move(Fighter fighter, int x, int y) {
+        field.deleteFighterFromPosition(fighter.getxPos(), fighter.getyPos());
+        field.setFighterToPosition(fighter, x, y);
+    }
+
     public Game machineMove() {
         return this;
     }
@@ -178,6 +184,7 @@ public class Game {
     public void setCurrent(PlayerType current) {
         this.current = current;
     }
+
 
 
 }

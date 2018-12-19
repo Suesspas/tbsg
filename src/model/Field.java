@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.*;
+
 /**
  * Field, where the Fighters are having their battle
  *
@@ -27,36 +29,38 @@ public class Field {
         int col = player.getPlayerType() == PlayerType.Human ? 1 : field.length-2 ;
         switch (player.currentGroupSize) {
             case 7:
-                field[6][col] = new FieldTile(player.getFighter(6));
-                field[0][col] = new FieldTile(player.getFighter(5));
+                setFighterToPosition(player.getFighter(6), 6, col);
+                setFighterToPosition(player.getFighter(5), 0, col);
             case 5:
-                field[4][col] = new FieldTile(player.getFighter(4));
-                field[2][col] = new FieldTile(player.getFighter(3));
+                setFighterToPosition(player.getFighter(4), 4, col);
+                setFighterToPosition(player.getFighter(3), 2, col);
             case 3:
-                field[5][col] = new FieldTile(player.getFighter(2));
-                field[1][col] = new FieldTile(player.getFighter(1));
+                setFighterToPosition(player.getFighter(2), 5, col);
+                setFighterToPosition(player.getFighter(1), 1, col);
             case 1:
-                field[3][col] = new FieldTile(player.getFighter(0));
+                setFighterToPosition(player.getFighter(0), 3, col);
                 break;
             case 6:
-                field[5][col] = new FieldTile(player.getFighter(5));
-                field[1][col] = new FieldTile(player.getFighter(4));
+                setFighterToPosition(player.getFighter(5), 5, col);
+                setFighterToPosition(player.getFighter(4), 1, col);
             case 4:
-                field[6][col] = new FieldTile(player.getFighter(3));
-                field[0][col] = new FieldTile(player.getFighter(2));
+                setFighterToPosition(player.getFighter(3), 6, col);
+                setFighterToPosition(player.getFighter(2), 0, col);
             case 2:
-                field[4][col] = new FieldTile(player.getFighter(1));
-                field[2][col] = new FieldTile(player.getFighter(0));
+                setFighterToPosition(player.getFighter(1), 4, col);
+                setFighterToPosition(player.getFighter(0), 2, col);
                 break;
         }
     }
 
     public void setFighterToPosition(Fighter fighter, int x, int y){
-        field[x][y].setFighter(fighter);
+        field[x][y] = new FieldTile(fighter);
+        fighter.setxPos(x);
+        fighter.setyPos(y);
     }
 
     public void deleteFighterFromPosition(int x, int y){
-       field[x][y].setFighter(null);
+        field[x][y] = null;
     }
 
     public Fighter getFighterFromPosition(int x, int y){

@@ -1,8 +1,9 @@
 package view;
 
 import javafx.util.Pair;
+import model.FieldTile;
+import model.Fighter;
 import model.Game;
-import model.Player;
 import model.PlayerType;
 
 import javax.swing.*;
@@ -10,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferStrategy;
 import java.util.LinkedList;
 
 public class View {
@@ -74,19 +74,21 @@ public class View {
                 int col = j;
                 PlayerType playerType = model.getPlayerFromPosition(i, j);
                 FieldPartView fpv = new FieldPartView(playerType);
+                JButton button = new JButton();
+                button.setOpaque(false);
+                button.setContentAreaFilled(false);
+                button.setBorderPainted(false);
+                if (buttonsDisabled) {
+                    button.setEnabled(false);
+                }
                 if (playerType == PlayerType.Human || playerType == PlayerType.Bot) {
-                    JButton button = new JButton();
                     button.addActionListener(e -> con.clickOnFighter(row, col));
-                    button.setOpaque(false);
-                    button.setContentAreaFilled(false);
-                    button.setBorderPainted(false);
-                    if (buttonsDisabled) {
-                        button.setEnabled(false);
-                    }
-                    fpv.add(button);
+
                 } else {
+                    button.addActionListener(e -> con.clickOnEmptyTile(row, col));
                     fpv.setForeground(Color.LIGHT_GRAY);
                 }
+                fpv.add(button);
                 field.add(fpv);
             }
         }
@@ -164,10 +166,7 @@ public class View {
         private View view;
         private Game model;
 
-        /**
-         * The maximum skill level of the machine.
-         */
-        private static final int MAX_LEVEL = 5;
+        private Pair<Integer, Integer> selectedFighterPos;
 
         /**
          * The default skill level of the machine.
@@ -181,6 +180,7 @@ public class View {
             this.view = view;
             model = new Game();
             level = DEFAULT_LEVEL;
+            selectedFighterPos = null;
         }
 
         private void cmdQuit() {
@@ -196,11 +196,37 @@ public class View {
             view.update(model);
         }
 
+        public void clickOnEmptyTile(int row, int col) {
+                if (selectedFighterPos != null){
+                    cmdMove(row, col);
+                } else {
+                    //evtl info über leere tile?
+                }
+                selectedFighterPos = null;
+        }
+
         //TODO auf boarsd auslegen mit row + col
         private void clickOnFighter(int row, int col) {
-            if (col >= FIELDSIZE/2) {
-                cmdAttack(0, 0);
+            if (model.getFighterFromPosition(row, col).getOwner() == PlayerType.Human){
+                clickOnHumanFighter(row, col);
+            } else if ((model.getFighterFromPosition(row, col).getOwner() == PlayerType.Bot)){
+                clickOnBotFighter(row, col);
             }
+        }
+
+        private void clickOnHumanFighter(int row, int col) {
+            //TODO stats anzeigen und attack select
+            selectedFighterPos = new Pair<>(row, col);
+            System.out.println("Fighter on position (" + row + ", " + col + ") has been selected.");
+        }
+
+        private void clickOnBotFighter(int row, int col) {
+            if (selectedFighterPos != null){
+                cmdAttack(0, 0);
+            } else {
+                //TODO stats anzeigen
+            }
+            selectedFighterPos = null;
         }
 
 
@@ -218,30 +244,27 @@ public class View {
             }
         }
 
-        /*private void nextTurn(Player p) {
-            if (!model.gameOver()) {
-                if (p == model.next()) {
-                    if (p == Player.HUMAN) {
-                        boardView.enableButtons();
-                        boardView.update(model);
-                        boardView.printTextBox("Miss a turn", "The bot has to "
-                                + "miss a turn");
-                    } else {
-                        boardView.printTextBox("Miss a turn", "Human has to "
-                                + "miss a turn");
-                        boardView.disableButtons();
-                        machineMove();
-                    }
-                } else {
-                    if (p == Player.HUMAN) {
-                        boardView.disableButtons();
-                        machineMove();
-                    }
+        private void cmdMove(int x, int y) {
+            if (selectedFighterPos != null){
+                Integer xPos = selectedFighterPos.getKey();
+                Integer yPos = selectedFighterPos.getValue();
+                Fighter fighter = model.getFighterFromPosition(xPos, yPos);
+                Fighter destination = model.getFighterFromPosition(x, y);
+                if (fighter == null) {
+                    throw new IllegalStateException("Oops, this shouldn't have happened");
                 }
-            } else {
-                won();
+                if (destination == null){
+                    model.move(fighter, x, y);
+                    System.out.println("Fighter on position (" + xPos + ", " + yPos + ") moved to (" + x + ", " + y + ")");
+                    view.update(model);
+                } else {
+                    printErrorBox("Tile already occupied");
+                }
             }
-        }*/
+            selectedFighterPos = null;
+        }
+
+
 
         private void machineMove() {
             machine = new MachineThread(model);
@@ -251,28 +274,6 @@ public class View {
 
         private Game getModel() {
             return model;
-        }
-
-        //TODO switch case kann ned bleim, for anstatt
-        private LinkedList<Pair<Integer, Integer>> tileDistribution(int fighters, PlayerType playerType) {
-            int i = playerType == PlayerType.Human ? 1 : 5;
-            LinkedList<Pair<Integer, Integer>> positions = new LinkedList<>();
-            switch (fighters) {
-                case 1:
-                    positions.add(new Pair<>(3, i));
-                    break;
-                case 2:
-                    positions.add(new Pair<>(2, i));
-                    positions.add(new Pair<>(4, i));
-                    break;
-                case 3:
-                    positions.add(new Pair<>(1, i));
-                    positions.add(new Pair<>(3, i));
-                    positions.add(new Pair<>(5, i));
-                    break;
-
-            }
-            return positions;
         }
 
         private final class MachineThread extends Thread {

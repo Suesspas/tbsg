@@ -1,5 +1,9 @@
 package model;
 
+import javafx.util.Pair;
+
+import java.awt.*;
+
 /**
  * Created by Pascal on 13.12.2018.
  */
@@ -15,6 +19,8 @@ public class Fighter {
     private Armor armor;
     private boolean defeated = false;
     private PlayerType owner;
+    private int xPos;
+    private int yPos;
 
     public Fighter(String name, double hp, double mp, double baseAtk, double baseDef, int level, PlayerType owner) {
         this.name = name;
@@ -24,6 +30,8 @@ public class Fighter {
         this.baseDef = baseDef;
         this.level = level;
         this.owner = owner;
+        xPos = -1;
+        yPos = -1;
     }
 
     public String getName() {
@@ -104,5 +112,21 @@ public class Fighter {
 
     public void setOwner(PlayerType owner) {
         this.owner = owner;
+    }
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
     }
 }
