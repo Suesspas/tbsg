@@ -10,7 +10,9 @@ import java.awt.*;
 public class Fighter {
     private String name;
     //TODO wahrscheinlich int besser für hp, dmg etc
+    private final double maxHp;
     private double hp;
+    private final double maxMp;
     private double mp;
     private double baseAtk;
     private double baseDef;
@@ -24,7 +26,9 @@ public class Fighter {
 
     public Fighter(String name, double hp, double mp, double baseAtk, double baseDef, int level, PlayerType owner) {
         this.name = name;
+        this.maxHp = hp;
         this.hp = hp;
+        this.maxMp = mp;
         this.mp = mp;
         this.baseAtk = baseAtk;
         this.baseDef = baseDef;
@@ -128,5 +132,13 @@ public class Fighter {
 
     public void setyPos(int yPos) {
         this.yPos = yPos;
+    }
+
+    public double getMaxHp() {
+        return maxHp;
+    }
+
+    public double getMaxMp() {
+        return maxMp;
     }
 }

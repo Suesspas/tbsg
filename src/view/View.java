@@ -8,9 +8,7 @@ import model.PlayerType;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.LinkedList;
 
 public class View {
@@ -39,7 +37,7 @@ public class View {
 
         frame = new JFrame("rtsg");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(640, 480)); //TODO view ist in breite gezogen
+        frame.setMinimumSize(new Dimension(640, 480));
 
         gamePanel = getFieldView(model);
         gamePanel.setPreferredSize(new Dimension(200, 200));
@@ -47,6 +45,7 @@ public class View {
         generateControlBar();
         //frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //Fullscreen
         //frame.setUndecorated(true); // Menu bar ausblenden
+        frame.pack();
         frame.setVisible(true);
     }
 
@@ -73,7 +72,8 @@ public class View {
                 int row = i;
                 int col = j;
                 PlayerType playerType = model.getPlayerFromPosition(i, j);
-                FieldPartView fpv = new FieldPartView(playerType);
+                Fighter fighter = model.getFighterFromPosition(i, j);
+                FieldPartView fpv = new FieldPartView(fighter);
                 JButton button = new JButton();
                 button.setOpaque(false);
                 button.setContentAreaFilled(false);
@@ -83,7 +83,11 @@ public class View {
                 }
                 if (playerType == PlayerType.Human || playerType == PlayerType.Bot) {
                     button.addActionListener(e -> con.clickOnFighter(row, col));
-
+                    /*fpv.addMouseListener(new MouseAdapter() {
+                        public void mousePressed(MouseEvent e) {
+                            con.clickOnFighter(row, col);
+                        }
+                    });*/ // Alternative zu buttons
                 } else {
                     button.addActionListener(e -> con.clickOnEmptyTile(row, col));
                     fpv.setForeground(Color.LIGHT_GRAY);
@@ -138,7 +142,6 @@ public class View {
         frame.add(newGamePanel);
         frame.remove(gamePanel);
         gamePanel = newGamePanel;
-
         frame.revalidate();
     }
 
@@ -222,7 +225,12 @@ public class View {
 
         private void clickOnBotFighter(int row, int col) {
             if (selectedFighterPos != null){
-                cmdAttack(0, 0);
+                Fighter attacker = model.getFighterFromPosition(selectedFighterPos.getKey(), selectedFighterPos.getValue());
+                Fighter defender = model.getFighterFromPosition(row, col);
+                if (attacker == null || defender == null) {
+                    throw new IllegalStateException("Oops this should not have happened");
+                }
+                cmdAttack(attacker, defender);
             } else {
                 //TODO stats anzeigen
             }
@@ -230,9 +238,9 @@ public class View {
         }
 
 
-        private void cmdAttack(int atk, int def) {
+        private void cmdAttack(Fighter attacker, Fighter defender) {
             if (model.getCurrent() == PlayerType.Human) {
-                model.humanAttack(atk, def);
+                model.humanAttack(attacker, defender);
                 /*if (modelBuffer == null) {
                     printErrorBox("Invalid move!");
                 } else {*/

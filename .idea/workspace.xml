@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5834fdf9-adac-4c24-b151-648ce186620f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/model/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/FieldTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/FieldTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Fighter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Fighter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Shell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Shell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/FieldPartView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FieldPartView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/View.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/Shell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="81" column="91" selection-start-line="81" selection-start-column="91" selection-end-line="81" selection-end-column="91" />
+            <state relative-caret-position="394">
+              <caret line="99" column="94" selection-start-line="99" selection-start-column="94" selection-end-line="99" selection-end-column="94" />
               <folding>
                 <element signature="e#5860#5861#0" expanded="true" />
                 <element signature="e#5913#5914#0" expanded="true" />
@@ -44,14 +44,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="263" column="38" lean-forward="true" selection-start-line="263" selection-start-column="38" selection-end-line="263" selection-end-column="38" />
+            <state relative-caret-position="191">
+              <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8736#8737#0" expanded="true" />
+                <element signature="e#9380#9381#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,10 +60,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/FieldPartView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+            <state relative-caret-position="437">
+              <caret line="46" column="76" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1207#1208#0" expanded="true" />
                 <element signature="e#1235#1236#0" expanded="true" />
                 <element signature="e#1281#1282#0" expanded="true" />
                 <element signature="e#1315#1316#0" expanded="true" />
@@ -97,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Fighter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5">
-              <caret line="104" column="47" lean-forward="true" selection-start-line="104" selection-start-column="47" selection-end-line="104" selection-end-column="47" />
+            <state relative-caret-position="1355">
+              <caret line="136" column="30" selection-start-line="136" selection-start-column="30" selection-end-line="136" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1174#1175#0" expanded="true" />
@@ -107,6 +108,7 @@
                 <element signature="e#1632#1633#0" expanded="true" />
                 <element signature="e#1801#1802#0" expanded="true" />
                 <element signature="e#1832#1833#0" expanded="true" />
+                <element signature="e#1881#1882#0" expanded="true" />
                 <element signature="e#1921#1922#0" expanded="true" />
                 <element signature="e#2033#2034#0" expanded="true" />
                 <element signature="e#2061#2062#0" expanded="true" />
@@ -120,30 +122,33 @@
                 <element signature="e#2410#2411#0" expanded="true" />
                 <element signature="e#2447#2448#0" expanded="true" />
                 <element signature="e#2479#2480#0" expanded="true" />
+                <element signature="e#2691#2692#0" expanded="true" />
+                <element signature="e#2723#2724#0" expanded="true" />
+                <element signature="e#2751#2752#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="139" column="50" lean-forward="true" selection-start-line="139" selection-start-column="50" selection-end-line="139" selection-end-column="50" />
+            <state relative-caret-position="259">
+              <caret line="104" column="21" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="21" />
               <folding>
                 <element signature="e#4968#4969#0" expanded="true" />
                 <element signature="e#5025#5026#0" expanded="true" />
-                <element signature="e#5527#5528#0" expanded="true" />
-                <element signature="e#5610#5611#0" expanded="true" />
-                <element signature="e#5685#5686#0" expanded="true" />
-                <element signature="e#5742#5743#0" expanded="true" />
-                <element signature="e#5814#5815#0" expanded="true" />
-                <element signature="e#5869#5870#0" expanded="true" />
-                <element signature="e#5933#5934#0" expanded="true" />
-                <element signature="e#5990#5991#0" expanded="true" />
-                <element signature="e#6063#6064#0" expanded="true" />
-                <element signature="e#6131#6132#0" expanded="true" />
-                <element signature="e#6219#6220#0" expanded="true" />
+                <element signature="e#5226#5227#0" expanded="true" />
+                <element signature="e#5309#5310#0" expanded="true" />
+                <element signature="e#5384#5385#0" expanded="true" />
+                <element signature="e#5441#5442#0" expanded="true" />
+                <element signature="e#5513#5514#0" expanded="true" />
+                <element signature="e#5568#5569#0" expanded="true" />
+                <element signature="e#5632#5633#0" expanded="true" />
+                <element signature="e#5689#5690#0" expanded="true" />
+                <element signature="e#5762#5763#0" expanded="true" />
+                <element signature="e#5830#5831#0" expanded="true" />
+                <element signature="e#5918#5919#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,10 +196,13 @@
     <findStrings>
       <find>getBoardView</find>
       <find>fighterSelect</find>
+      <find>upda</find>
+      <find>end</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>selectedFighterPos</replace>
+      <replace>len</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -207,16 +215,16 @@
         <option value="$PROJECT_DIR$/src/model/Armor.java" />
         <option value="$PROJECT_DIR$/src/view/FieldView.java" />
         <option value="$PROJECT_DIR$/src/model/PlayerType.java" />
-        <option value="$PROJECT_DIR$/src/view/FieldPartView.java" />
         <option value="$PROJECT_DIR$/src/model/Human.java" />
         <option value="$PROJECT_DIR$/src/model/Bot.java" />
         <option value="$PROJECT_DIR$/src/model/Player.java" />
-        <option value="$PROJECT_DIR$/src/test/Shell.java" />
         <option value="$PROJECT_DIR$/src/model/FieldTile.java" />
-        <option value="$PROJECT_DIR$/src/model/Fighter.java" />
         <option value="$PROJECT_DIR$/src/model/Field.java" />
-        <option value="$PROJECT_DIR$/src/model/Game.java" />
         <option value="$PROJECT_DIR$/src/view/View.java" />
+        <option value="$PROJECT_DIR$/src/model/Fighter.java" />
+        <option value="$PROJECT_DIR$/src/test/Shell.java" />
+        <option value="$PROJECT_DIR$/src/view/FieldPartView.java" />
+        <option value="$PROJECT_DIR$/src/model/Game.java" />
       </list>
     </option>
   </component>
@@ -272,7 +280,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545198316803" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545216957554" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/Programmieren/Prog 2/Exercise3" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -383,12 +391,12 @@
       <workItem from="1544803512345" duration="27447000" />
       <workItem from="1544989043021" duration="2377000" />
       <workItem from="1545101068419" duration="614000" />
-      <workItem from="1545103488396" duration="27518000" />
+      <workItem from="1545103488396" duration="36310000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57956000" />
+    <option name="totallyTimeSpent" value="66748000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -443,7 +451,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/view/View.java</url>
-          <line>246</line>
+          <line>254</line>
           <properties class="view.View.Controller" method="cmdMove">
             <option name="EMULATED" value="true" />
           </properties>
@@ -526,17 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/Shell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="81" column="91" selection-start-line="81" selection-start-column="91" selection-end-line="81" selection-end-column="91" />
-          <folding>
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5913#5914#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -564,15 +561,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/FieldPartView.java">
+    <entry file="file://$PROJECT_DIR$/src/model/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+        <state relative-caret-position="238">
+          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+          <folding>
+            <element signature="e#2311#2312#0" expanded="true" />
+            <element signature="e#2345#2346#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_101/src.zip!/java/awt/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="800" column="16" selection-start-line="800" selection-start-column="16" selection-end-line="800" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1235#1236#0" expanded="true" />
-            <element signature="e#1281#1282#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
+            <element signature="e#9380#9381#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Shell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="99" column="94" selection-start-line="99" selection-start-column="94" selection-end-line="99" selection-end-column="94" />
+          <folding>
+            <element signature="e#5860#5861#0" expanded="true" />
+            <element signature="e#5913#5914#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -595,43 +619,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/view/FieldPartView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="139" column="50" lean-forward="true" selection-start-line="139" selection-start-column="50" selection-end-line="139" selection-end-column="50" />
+        <state relative-caret-position="437">
+          <caret line="46" column="76" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
           <folding>
-            <element signature="e#4968#4969#0" expanded="true" />
-            <element signature="e#5025#5026#0" expanded="true" />
-            <element signature="e#5527#5528#0" expanded="true" />
-            <element signature="e#5610#5611#0" expanded="true" />
-            <element signature="e#5685#5686#0" expanded="true" />
-            <element signature="e#5742#5743#0" expanded="true" />
-            <element signature="e#5814#5815#0" expanded="true" />
-            <element signature="e#5869#5870#0" expanded="true" />
-            <element signature="e#5933#5934#0" expanded="true" />
-            <element signature="e#5990#5991#0" expanded="true" />
-            <element signature="e#6063#6064#0" expanded="true" />
-            <element signature="e#6131#6132#0" expanded="true" />
-            <element signature="e#6219#6220#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Field.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
-          <folding>
-            <element signature="e#2311#2312#0" expanded="true" />
-            <element signature="e#2345#2346#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1207#1208#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#1281#1282#0" expanded="true" />
+            <element signature="e#1315#1316#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Fighter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="104" column="47" lean-forward="true" selection-start-line="104" selection-start-column="47" selection-end-line="104" selection-end-column="47" />
+        <state relative-caret-position="1355">
+          <caret line="136" column="30" selection-start-line="136" selection-start-column="30" selection-end-line="136" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1174#1175#0" expanded="true" />
@@ -640,6 +645,7 @@
             <element signature="e#1632#1633#0" expanded="true" />
             <element signature="e#1801#1802#0" expanded="true" />
             <element signature="e#1832#1833#0" expanded="true" />
+            <element signature="e#1881#1882#0" expanded="true" />
             <element signature="e#1921#1922#0" expanded="true" />
             <element signature="e#2033#2034#0" expanded="true" />
             <element signature="e#2061#2062#0" expanded="true" />
@@ -653,17 +659,31 @@
             <element signature="e#2410#2411#0" expanded="true" />
             <element signature="e#2447#2448#0" expanded="true" />
             <element signature="e#2479#2480#0" expanded="true" />
+            <element signature="e#2691#2692#0" expanded="true" />
+            <element signature="e#2723#2724#0" expanded="true" />
+            <element signature="e#2751#2752#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/View.java">
+    <entry file="file://$PROJECT_DIR$/src/model/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="263" column="38" lean-forward="true" selection-start-line="263" selection-start-column="38" selection-end-line="263" selection-end-column="38" />
+        <state relative-caret-position="259">
+          <caret line="104" column="21" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8736#8737#0" expanded="true" />
+            <element signature="e#4968#4969#0" expanded="true" />
+            <element signature="e#5025#5026#0" expanded="true" />
+            <element signature="e#5226#5227#0" expanded="true" />
+            <element signature="e#5309#5310#0" expanded="true" />
+            <element signature="e#5384#5385#0" expanded="true" />
+            <element signature="e#5441#5442#0" expanded="true" />
+            <element signature="e#5513#5514#0" expanded="true" />
+            <element signature="e#5568#5569#0" expanded="true" />
+            <element signature="e#5632#5633#0" expanded="true" />
+            <element signature="e#5689#5690#0" expanded="true" />
+            <element signature="e#5762#5763#0" expanded="true" />
+            <element signature="e#5830#5831#0" expanded="true" />
+            <element signature="e#5918#5919#0" expanded="true" />
           </folding>
         </state>
       </provider>

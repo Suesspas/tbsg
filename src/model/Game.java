@@ -92,22 +92,17 @@ public class Game {
     }
     //TODO zuerst mal human attack dann rest
     //TODO abrprüfen der ints obs die arrays auch groß genug sind
-    public void humanAttack(int atk, int def){
-        if (atk < 0 || def < 0 || atk > maxGroupSize || def > maxGroupSize) {
+    public void humanAttack(Fighter atk, Fighter def){
+        if (atk == null || def == null) {
             throw new IllegalArgumentException("Positions not defined");
         }
-        if (human.fighters[atk] == null || bot.fighters[def] == null){
-            throw new IllegalArgumentException("No Fighter at specified position");
-        }
-        Fighter attacker = human.fighters[atk];
-        Fighter defender = bot.fighters[def];
-        double damage = calculateDamage(attacker, defender);
-        dealDamageToFighter(damage, defender);
+        double damage = calculateDamage(atk, def);
+        dealDamageToFighter(damage, def);
     }
 
     //evtl hp < 0 zulassen
     public void dealDamageToFighter(double damage, Fighter fighter){
-        if (damage > fighter.getHp()){
+        if (damage >= fighter.getHp()){
             damage = fighter.getHp();
             fighter.setDefeated(true);
             System.out.println(fighter.getName() + " has been defeated.");

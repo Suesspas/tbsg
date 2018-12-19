@@ -97,7 +97,7 @@ public final class Shell {
             } catch (NumberFormatException e) {
                 printErrorMessage("both arguments have to be numbers.");
             }
-            game.humanAttack(atkPos, defPos);
+            game.humanAttack(game.getP1().getFighter(atkPos), game.getP2().getFighter(defPos));
         } else {
             printErrorMessage("2 arguments needed, postion of attacker 0-2, and position of defender 0-2");
         }
