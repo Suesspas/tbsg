@@ -1,5 +1,7 @@
 package model;
 
+import javafx.util.Pair;
+
 import java.util.LinkedList;
 
 /**
@@ -92,12 +94,18 @@ public class Game {
     }
     //TODO zuerst mal human attack dann rest
     //TODO abrprüfen der ints obs die arrays auch groß genug sind
-    public void humanAttack(Fighter atk, Fighter def){
+    public void humanAttack(Fighter atk, Fighter def) {
         if (atk == null || def == null) {
             throw new IllegalArgumentException("Positions not defined");
         }
-        double damage = calculateDamage(atk, def);
-        dealDamageToFighter(damage, def);
+        int dx = atk.getxPos() - def.getxPos();
+        int dy = atk.getyPos() - def.getyPos();
+        if (atk.getMoveRange().isInRange(dx, dy)) {
+            double damage = calculateDamage(atk, def);
+            dealDamageToFighter(damage, def);
+        } else {
+            System.out.println("Enemy not in Range for an attack");
+        }
     }
 
     //evtl hp < 0 zulassen
@@ -131,8 +139,15 @@ public class Game {
 
     //TODO abprüfung auf maximale Laufreichweite
     public void move(Fighter fighter, int x, int y) {
-        field.deleteFighterFromPosition(fighter.getxPos(), fighter.getyPos());
-        field.setFighterToPosition(fighter, x, y);
+        int dx = fighter.getxPos() - x;
+        int dy = fighter.getyPos() - y;
+        if (fighter.getMoveRange().isInRange(dx, dy)){
+            field.deleteFighterFromPosition(fighter.getxPos(), fighter.getyPos());
+            field.setFighterToPosition(fighter, x, y);
+        } else {
+            System.out.println("Fighter can not move to selected tile.");
+        }
+
     }
 
     public Game machineMove() {

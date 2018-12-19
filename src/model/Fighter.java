@@ -23,6 +23,8 @@ public class Fighter {
     private PlayerType owner;
     private int xPos;
     private int yPos;
+    private Range moveRange;
+    private Range attackRange;
 
     public Fighter(String name, double hp, double mp, double baseAtk, double baseDef, int level, PlayerType owner) {
         this.name = name;
@@ -36,6 +38,8 @@ public class Fighter {
         this.owner = owner;
         xPos = -1;
         yPos = -1;
+        moveRange = new Range(1);
+        attackRange = new Range(1);
     }
 
     public String getName() {
@@ -140,5 +144,21 @@ public class Fighter {
 
     public double getMaxMp() {
         return maxMp;
+    }
+
+    public Range getMoveRange() {
+        return moveRange;
+    }
+
+    public void setMoveRange(Range moveRange) {
+        this.moveRange = moveRange;
+    }
+
+    public Range getAttackRange() {
+        return attackRange;
+    }
+
+    public void setAttackRange(Range attackRange) {
+        this.attackRange = attackRange;
     }
 }

@@ -218,7 +218,7 @@ public class View {
         }
 
         private void clickOnHumanFighter(int row, int col) {
-            //TODO stats anzeigen und attack select
+            //TODO stats anzeigen und range
             selectedFighterPos = new Pair<>(row, col);
             System.out.println("Fighter on position (" + row + ", " + col + ") has been selected.");
         }
