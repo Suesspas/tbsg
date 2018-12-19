@@ -37,4 +37,12 @@ public class FieldPartView extends JPanel{
         g.fillOval(9*w/10, 3*h/4, 10, 10);*/
 
     }
+
+    public PlayerType getOwner() {
+        return owner;
+    }
+
+    public void setOwner(PlayerType owner) {
+        this.owner = owner;
+    }
 }

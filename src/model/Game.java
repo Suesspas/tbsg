@@ -21,8 +21,8 @@ public class Game {
     }
 
     public Game(){
-        Fighter stdFighter = new Fighter("Std", 10, 5, 4, 2, 1);
-        Fighter stdFighter2 = new Fighter("Std2", 10, 5, 4, 2, 1);
+        Fighter stdFighter = new Fighter("Std", 10, 5, 4, 2, 1, PlayerType.Human);
+        Fighter stdFighter2 = new Fighter("Std2", 10, 5, 4, 2, 1, PlayerType.Bot);
         Fighter[] stdFighters = new Fighter[maxGroupSize];
         Fighter[] stdFightersB = new Fighter[maxGroupSize];
         stdFighters[0] = stdFighter;
@@ -31,6 +31,7 @@ public class Game {
         bot = new Bot(stdFightersB);
         level = 0;
         current = PlayerType.Human;
+        field = new Field(7, human, bot);
         //field = new Field(); TODO field entspricht im endeffekt einer view, kann also evtl weg
     }
 
@@ -124,6 +125,14 @@ public class Game {
         return damage < 0 ? 0 : damage;
     }
 
+    public PlayerType getPlayerFromPosition(int x, int y) {
+        Fighter fighter = field.getFighterFromPosition(x, y);
+        return fighter == null ? PlayerType.Nobody : fighter.getOwner();
+    }
+
+    public Fighter getFighterFromPosition(int x, int y) {
+        return field.getFighterFromPosition(x, y);
+    }
 
     public Game machineMove() {
         return this;
@@ -169,5 +178,6 @@ public class Game {
     public void setCurrent(PlayerType current) {
         this.current = current;
     }
+
 
 }

@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferStrategy;
 import java.util.LinkedList;
 
 public class View {
@@ -67,25 +68,15 @@ public class View {
         });
         LayoutManager grid = new GridLayout(FIELDSIZE, FIELDSIZE);
         field.setLayout(grid);
-        int humanFighters = model.getP1().getCurrentGroupSize();
-        int botFighters = model.getP2().getCurrentGroupSize();
-        LinkedList<Pair<Integer, Integer>> hPos = con.tileDistribution(humanFighters, PlayerType.Human);
-        LinkedList<Pair<Integer, Integer>> bPos = con.tileDistribution(botFighters, PlayerType.Bot);
         for (int i = 0; i < FIELDSIZE; ++i) {
             for (int j = 0; j < FIELDSIZE; ++j) {
                 int row = i;
                 int col = j;
-                PlayerType playerType = PlayerType.Nobody;
-                Pair<Integer, Integer> coords = new Pair<>(row, col);
-                if (hPos.contains(coords)) {
-                    playerType = PlayerType.Human;
-                } else if (bPos.contains(coords)) {
-                    playerType = PlayerType.Bot;
-                }
+                PlayerType playerType = model.getPlayerFromPosition(i, j);
                 FieldPartView fpv = new FieldPartView(playerType);
                 if (playerType == PlayerType.Human || playerType == PlayerType.Bot) {
                     JButton button = new JButton();
-                    button.addActionListener(e -> con.cmdMove(row, col));
+                    button.addActionListener(e -> con.clickOnFighter(row, col));
                     button.setOpaque(false);
                     button.setContentAreaFilled(false);
                     button.setBorderPainted(false);
@@ -139,6 +130,7 @@ public class View {
     }
 
     private synchronized void update(Game model) {
+        //BufferStrategy bs = this.get;
         View.model = model;
         JPanel newGamePanel = getFieldView(model);
         frame.add(newGamePanel);
@@ -204,13 +196,21 @@ public class View {
             view.update(model);
         }
 
-        private void cmdMove(int atk, int def) {
+        //TODO auf boarsd auslegen mit row + col
+        private void clickOnFighter(int row, int col) {
+            if (col >= FIELDSIZE/2) {
+                cmdAttack(0, 0);
+            }
+        }
+
+
+        private void cmdAttack(int atk, int def) {
             if (model.getCurrent() == PlayerType.Human) {
                 model.humanAttack(atk, def);
                 /*if (modelBuffer == null) {
                     printErrorBox("Invalid move!");
                 } else {*/
-                    view.update(model);
+                view.update(model);
                     //nextTurn(Player.HUMAN);
                 //}
             } else {

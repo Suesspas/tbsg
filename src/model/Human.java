@@ -10,7 +10,7 @@ public class Human extends Player{
     private LinkedList<Item> inventory;
 
     public Human(Fighter[] fighters, int gold) {
-        super(fighters);
+        super(fighters, PlayerType.Human);
         this.gold = gold;
         this.inventory = new LinkedList<>();
         Item standardWeapon = new Item("stdWeapon", "standard weapon doing standard dmg");

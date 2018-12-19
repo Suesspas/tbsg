@@ -5,7 +5,7 @@ package model;
  */
 public class Bot extends Player {
     public Bot(Fighter[] fighters) {
-        super(fighters);
+        super(fighters, PlayerType.Bot);
     }
 
     public void setFighters(Fighter[] fighters) {

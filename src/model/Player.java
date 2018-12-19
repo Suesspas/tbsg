@@ -6,16 +6,27 @@ package model;
 public abstract class Player {
         Fighter[] fighters;
         int currentGroupSize = 0;
+        PlayerType playerType;
 
         public Fighter[] getFighters() {
                 return fighters;
         }
 
-        public Player(Fighter[] fighters) {
-                this.fighters = fighters;
-                for (Fighter f : fighters) {
-                        if (f != null) currentGroupSize++;
+        public Player(Fighter[] fighters, PlayerType playerType) {
+                if (playerType == PlayerType.Human || playerType == PlayerType.Bot) {
+                        this.playerType = playerType;
+                } else {
+                        throw new IllegalArgumentException("Player has to be human or bot");
                 }
+                for (Fighter f : fighters) {
+                        if (f != null) {
+                                if (f.getOwner() != playerType) {
+                                        throw new IllegalArgumentException();
+                                }
+                                currentGroupSize++;
+                        }
+                }
+                this.fighters = fighters;
         }
 
         //TODO abprüfen ob auch bei leerem array funzt
@@ -45,5 +56,9 @@ public abstract class Player {
 
         public int getCurrentGroupSize() {
                 return currentGroupSize;
+        }
+
+        public PlayerType getPlayerType() {
+                return playerType;
         }
 }

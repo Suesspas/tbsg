@@ -79,7 +79,7 @@ public final class Shell {
     private static void add(String[] arguments) {
         if (checkNumberOfArguments(arguments.length, 1)) {
             //TODO nicht in shell fighter + player anlegen
-            Fighter stdFighter2 = new Fighter("testeroni", 11, 6, 5, 2, 2);
+            Fighter stdFighter2 = new Fighter("testeroni", 11, 6, 5, 2, 2, PlayerType.Human);
             game.addFighterToPlayer(stdFighter2, PlayerType.Human);
         } else {
             printErrorMessage("No arguments needed");

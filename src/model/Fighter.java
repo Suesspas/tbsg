@@ -14,14 +14,16 @@ public class Fighter {
     private Weapon weapon;
     private Armor armor;
     private boolean defeated = false;
+    private PlayerType owner;
 
-    public Fighter(String name, double hp, double mp, double baseAtk, double baseDef, int level) {
+    public Fighter(String name, double hp, double mp, double baseAtk, double baseDef, int level, PlayerType owner) {
         this.name = name;
         this.hp = hp;
         this.mp = mp;
         this.baseAtk = baseAtk;
         this.baseDef = baseDef;
         this.level = level;
+        this.owner = owner;
     }
 
     public String getName() {
@@ -94,5 +96,13 @@ public class Fighter {
 
     public void setDefeated(boolean defeated) {
         this.defeated = defeated;
+    }
+
+    public PlayerType getOwner() {
+        return owner;
+    }
+
+    public void setOwner(PlayerType owner) {
+        this.owner = owner;
     }
 }
