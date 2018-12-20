@@ -22,6 +22,8 @@ public class View {
     private static Controller con;
     private final int FIELDSIZE = 7;
 
+    private Animation playerIdle;
+
 
     @SuppressWarnings("unused")
     public static void main(String[] args) {
@@ -32,6 +34,8 @@ public class View {
      * Calls the Constructor of the Controller class and builds a new Frame.
      */
     public View() {
+        Assets.init();
+
         View.con = new Controller(this);
         model = con.getModel();
 
@@ -39,7 +43,6 @@ public class View {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(640, 480));
 
-        Assets.init();
         gamePanel = getFieldView(model);
         gamePanel.setPreferredSize(new Dimension(200, 200));
         frame.add(gamePanel);
@@ -74,6 +77,9 @@ public class View {
                 int col = j;
                 PlayerType playerType = model.getPlayerFromPosition(i, j);
                 Fighter fighter = model.getFighterFromPosition(i, j);
+                if (fighter != null && fighter.getOwner() == PlayerType.Human) {
+                    fighter.setCurrentSprite(playerIdle.getCurrentFrame());
+                }
                 FieldPartView fpv = new FieldPartView(fighter);
                 JButton button = new JButton();
                 button.setOpaque(false);
@@ -146,6 +152,10 @@ public class View {
         frame.revalidate();
     }
 
+    private synchronized void updateAnimations() {
+        getFieldView(model);
+    }
+
     private void printErrorBox(String message) {
         JOptionPane.showMessageDialog(
                 frame, message, "Error", JOptionPane.ERROR_MESSAGE);
@@ -179,16 +189,20 @@ public class View {
 
         private int level;
         private MachineThread machine;
+        private AnimationThread animationThread;
 
         private Controller(View view) {
             this.view = view;
             model = new Game();
             level = DEFAULT_LEVEL;
             selectedFighterPos = null;
+            animationThread = new AnimationThread(view);
+            animationThread.start();
         }
 
         private void cmdQuit() {
             view.frame.setVisible(false);
+            animationThread.running = false;
             System.exit(0);
         }
 
@@ -283,6 +297,49 @@ public class View {
 
         private Game getModel() {
             return model;
+        }
+
+        private final class AnimationThread extends Thread {
+            private View view;
+
+            boolean running;
+
+            private AnimationThread(View view) {
+                super();
+                this.view = view;
+                view.playerIdle = new Animation(500, Assets.playerIdle);
+                running = true;
+            }
+
+            @Override
+            public void run() {
+                int fps = 60;
+                double timePerTick = 1000000000 / fps;
+                double delta = 0;
+                long now;
+                long lastTime = System.nanoTime();
+                int ticks = 0;
+                long timer = 0;
+
+                while (running){
+                    now = System.nanoTime();
+                    delta += (now - lastTime) / timePerTick;
+                    timer += now - lastTime;
+                    lastTime = now;
+                    if (delta >= 1){
+                        //Animations-Updates hier
+                        view.playerIdle.tick();
+                        view.updateAnimations();
+                        ticks++;
+                        delta--;
+                    }
+                    if (timer >= 1000000000){
+                        System.out.println("Ticks and Frames: " + ticks);
+                        ticks = 0;
+                        timer = 0;
+                    }
+                }
+            }
         }
 
         private final class MachineThread extends Thread {

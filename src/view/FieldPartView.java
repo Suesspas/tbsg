@@ -5,11 +5,13 @@ import model.PlayerType;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class FieldPartView extends JPanel{
     private static final long serialVersionUID = 1L;
     private PlayerType owner;
     private Fighter fighter;
+    private BufferedImage image;
 
     public FieldPartView(Fighter fighter) {
         super(new BorderLayout());
@@ -19,6 +21,7 @@ public class FieldPartView extends JPanel{
             this.owner = fighter.getOwner();
         }
         this.fighter = fighter;
+        this.image = image;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class FieldPartView extends JPanel{
             //g.fillOval(start, start, len, len);
             g.setColor(Color.RED);
             drawHPbar(g, start, len);
-            g.drawImage(Assets.player, len/6, -len/5, this.getWidth()-len/5, this.getHeight()-len/10,null);
+            g.drawImage(fighter.getCurrentSprite(), len/6, -len/5, this.getWidth()-len/5, this.getHeight()-len/10,null);
         } else if (owner == PlayerType.Bot){
             //setForeground(Color.RED);
             //g.fillOval(start, start, len, len);

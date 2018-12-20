@@ -1,8 +1,10 @@
 package model;
 
 import javafx.util.Pair;
+import view.Assets;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Pascal on 13.12.2018.
@@ -25,6 +27,7 @@ public class Fighter {
     private int yPos;
     private Range moveRange;
     private Range attackRange;
+    private BufferedImage currentSprite;
 
     public Fighter(String name, double hp, double mp, double baseAtk, double baseDef, int level, PlayerType owner) {
         this.name = name;
@@ -40,6 +43,7 @@ public class Fighter {
         yPos = -1;
         moveRange = new Range(1);
         attackRange = new Range(1);
+        currentSprite = Assets.playerIdle[0];
     }
 
     public String getName() {
@@ -160,5 +164,13 @@ public class Fighter {
 
     public void setAttackRange(Range attackRange) {
         this.attackRange = attackRange;
+    }
+
+    public BufferedImage getCurrentSprite() {
+        return currentSprite;
+    }
+
+    public void setCurrentSprite(BufferedImage currentSprite) {
+        this.currentSprite = currentSprite;
     }
 }
