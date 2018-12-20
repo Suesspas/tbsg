@@ -28,6 +28,7 @@ public class Fighter {
     private Range moveRange;
     private Range attackRange;
     private BufferedImage currentSprite;
+    private FighterState fighterState;
 
     public Fighter(String name, double hp, double mp, double baseAtk, double baseDef, int level, PlayerType owner) {
         this.name = name;
@@ -44,6 +45,7 @@ public class Fighter {
         moveRange = new Range(1);
         attackRange = new Range(1);
         currentSprite = Assets.playerIdle[0];
+        fighterState = FighterState.IDLE;
     }
 
     public String getName() {
@@ -172,5 +174,13 @@ public class Fighter {
 
     public void setCurrentSprite(BufferedImage currentSprite) {
         this.currentSprite = currentSprite;
+    }
+
+    public FighterState getFighterState() {
+        return fighterState;
+    }
+
+    public void setFighterState(FighterState fighterState) {
+        this.fighterState = fighterState;
     }
 }

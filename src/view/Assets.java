@@ -8,6 +8,7 @@ public class Assets {
     public static BufferedImage player;
     public static BufferedImage enemy;
     public static BufferedImage[] playerIdle;
+    public static BufferedImage[] enemyIdle;
 
     public static void init(){
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/resources/images/LightBandit_Spritesheet.png"));
@@ -17,9 +18,11 @@ public class Assets {
         enemy = sheet2.crop(0, 0, 48, 48);
 
         playerIdle = new BufferedImage[4];
+        enemyIdle = new BufferedImage[4];
         int size = 48;
         for (int i = 0; i < playerIdle.length; i++) {
-            playerIdle[i] = flipImage(sheet.crop(size*i, 0, 48, 48));
+            playerIdle[i] = flipImage(sheet.crop(size*(i+4), 0, 48, 48));
+            enemyIdle[i] = sheet2.crop(size*(i+4), 0, 48, 48);
         }
 
     }

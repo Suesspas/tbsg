@@ -44,7 +44,7 @@ public class FieldPartView extends JPanel{
             //g.fillOval(start, start, len, len);
             g.setColor(Color.RED);
             drawHPbar(g, start, len);
-            g.drawImage(Assets.enemy, 0, -len/5, this.getWidth()-len/5, this.getHeight()-len/10,null);
+            g.drawImage(fighter.getCurrentSprite(), 0, -len/5, this.getWidth()-len/5, this.getHeight()-len/10,null);
         }
     }
 

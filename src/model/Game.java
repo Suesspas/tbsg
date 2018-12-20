@@ -95,24 +95,38 @@ public class Game {
     //TODO zuerst mal human attack dann rest
     //TODO abrprüfen der ints obs die arrays auch groß genug sind
     public void humanAttack(Fighter atk, Fighter def) {
+             if (isValidAttack(atk, def)){
+                double damage = calculateDamage(atk, def);
+                dealDamageToFighter(damage, def);
+            }
+    }
+
+    public boolean isValidAttack(Fighter atk, Fighter def) {
         if (atk == null || def == null) {
             throw new IllegalArgumentException("Positions not defined");
         }
+        if (atk.getFighterState() != FighterState.IDLE){
+            throw new IllegalStateException("attacker should be in idle state before attacking");
+        }
         int dx = atk.getxPos() - def.getxPos();
         int dy = atk.getyPos() - def.getyPos();
-        if (atk.getMoveRange().isInRange(dx, dy)) {
-            double damage = calculateDamage(atk, def);
-            dealDamageToFighter(damage, def);
+        if (atk.getAttackRange().isInRange(dx, dy)) {
+            if (def.getFighterState() != FighterState.DEFEATED){
+                return true;
+            } else {
+                System.out.println("Enemy already defeated");
+            }
         } else {
             System.out.println("Enemy not in Range for an attack");
         }
+        return false;
     }
 
     //evtl hp < 0 zulassen
     public void dealDamageToFighter(double damage, Fighter fighter){
         if (damage >= fighter.getHp()){
             damage = fighter.getHp();
-            fighter.setDefeated(true);
+            fighter.setFighterState(FighterState.DEFEATED);
             System.out.println(fighter.getName() + " has been defeated.");
         }
         fighter.setHp(fighter.getHp() - damage);

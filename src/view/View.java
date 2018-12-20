@@ -23,6 +23,7 @@ public class View {
     private final int FIELDSIZE = 7;
 
     private Animation playerIdle;
+    private Animation enemyIdle;
 
 
     @SuppressWarnings("unused")
@@ -41,10 +42,10 @@ public class View {
 
         frame = new JFrame("rtsg");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(640, 480));
+        frame.setMinimumSize(new Dimension(1280, 720));
 
         gamePanel = getFieldView(model);
-        gamePanel.setPreferredSize(new Dimension(200, 200));
+        gamePanel.setPreferredSize(new Dimension(400, 400));
         frame.add(gamePanel);
         generateControlBar();
         //frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //Fullscreen
@@ -77,9 +78,7 @@ public class View {
                 int col = j;
                 PlayerType playerType = model.getPlayerFromPosition(i, j);
                 Fighter fighter = model.getFighterFromPosition(i, j);
-                if (fighter != null && fighter.getOwner() == PlayerType.Human) {
-                    fighter.setCurrentSprite(playerIdle.getCurrentFrame());
-                }
+                con.determineSprite(fighter);
                 FieldPartView fpv = new FieldPartView(fighter);
                 JButton button = new JButton();
                 button.setOpaque(false);
@@ -255,10 +254,16 @@ public class View {
 
         private void cmdAttack(Fighter attacker, Fighter defender) {
             if (model.getCurrent() == PlayerType.Human) {
-                model.humanAttack(attacker, defender);
+                if (model.isValidAttack(attacker, defender)){
+                    //Angriffs animation hier
+
+                    model.humanAttack(attacker, defender);
+                }
+
                 /*if (modelBuffer == null) {
                     printErrorBox("Invalid move!");
                 } else {*/
+
                 view.update(model);
                     //nextTurn(Player.HUMAN);
                 //}
@@ -287,7 +292,16 @@ public class View {
             selectedFighterPos = null;
         }
 
-
+        private void determineSprite(Fighter fighter) {
+            if (fighter != null) {
+                if (fighter.getOwner() == PlayerType.Human) {
+                    fighter.setCurrentSprite(playerIdle.getCurrentFrame());
+                }
+                else {
+                    fighter.setCurrentSprite(enemyIdle.getCurrentFrame());
+                }
+            }
+        }
 
         private void machineMove() {
             machine = new MachineThread(model);
@@ -301,13 +315,15 @@ public class View {
 
         private final class AnimationThread extends Thread {
             private View view;
+            final int timeTillNextFrame = 400;
 
             boolean running;
 
             private AnimationThread(View view) {
                 super();
                 this.view = view;
-                view.playerIdle = new Animation(500, Assets.playerIdle);
+                view.playerIdle = new Animation(timeTillNextFrame, Assets.playerIdle);
+                view.enemyIdle = new Animation(timeTillNextFrame, Assets.enemyIdle);
                 running = true;
             }
 
@@ -329,6 +345,7 @@ public class View {
                     if (delta >= 1){
                         //Animations-Updates hier
                         view.playerIdle.tick();
+                        view.enemyIdle.tick();
                         view.updateAnimations();
                         ticks++;
                         delta--;
