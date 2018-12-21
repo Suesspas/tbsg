@@ -5,6 +5,7 @@ import view.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.UUID;
 
 /**
  * Created by Pascal on 13.12.2018.
@@ -29,6 +30,7 @@ public class Fighter {
     private Range attackRange;
     private BufferedImage currentSprite;
     private FighterState fighterState;
+    private String uniqueID;
 
     public Fighter(String name, double hp, double mp, double baseAtk, double baseDef, int level, PlayerType owner) {
         this.name = name;
@@ -46,6 +48,7 @@ public class Fighter {
         attackRange = new Range(1);
         currentSprite = Assets.playerIdle[0];
         fighterState = FighterState.IDLE;
+        uniqueID = UUID.randomUUID().toString();
     }
 
     public String getName() {
@@ -182,5 +185,9 @@ public class Fighter {
 
     public void setFighterState(FighterState fighterState) {
         this.fighterState = fighterState;
+    }
+
+    public String getUniqueID() {
+        return uniqueID;
     }
 }

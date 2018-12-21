@@ -5,23 +5,23 @@ import model.PlayerType;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class FieldPartView extends JPanel{
     private static final long serialVersionUID = 1L;
     private PlayerType owner;
     private Fighter fighter;
-    private BufferedImage image;
+    AnimatedObject animatedObject;
 
     public FieldPartView(Fighter fighter) {
         super(new BorderLayout());
+        //animatedObject = new AnimatedFighter(null);
+        //animatedObject.getCurrentSprite();
         if (fighter == null) {
             owner = PlayerType.Nobody;
         } else {
             this.owner = fighter.getOwner();
         }
         this.fighter = fighter;
-        this.image = image;
     }
 
     @Override
@@ -52,6 +52,7 @@ public class FieldPartView extends JPanel{
         double hpPercent = fighter.getHp()/fighter.getMaxHp();
         g.fillRect(start, start + len + len/10, (int)(len*hpPercent), len*23/100);
         g.setColor(Color.BLACK);
+        g.drawRect(start, start + len + len/10, len, len*23/100);
         g.setFont(new Font("TimesRoman", Font.BOLD, this.getWidth()/8));
         g.drawString("HP: " + fighter.getHp(), start,start+len+(3* len/10));
     }

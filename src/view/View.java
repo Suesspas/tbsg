@@ -9,6 +9,7 @@ import model.PlayerType;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class View {
@@ -22,6 +23,7 @@ public class View {
     private static Controller con;
     private final int FIELDSIZE = 7;
 
+    private HashMap<String, AnimatedFighter> animatedFighters = new HashMap<>();
     private Animation playerIdle;
     private Animation enemyIdle;
 
@@ -77,6 +79,7 @@ public class View {
                 int row = i;
                 int col = j;
                 PlayerType playerType = model.getPlayerFromPosition(i, j);
+                //TODO fighter durch AnimatedFighter ersetzen
                 Fighter fighter = model.getFighterFromPosition(i, j);
                 con.determineSprite(fighter);
                 FieldPartView fpv = new FieldPartView(fighter);
@@ -222,7 +225,6 @@ public class View {
                 selectedFighterPos = null;
         }
 
-        //TODO auf boarsd auslegen mit row + col
         private void clickOnFighter(int row, int col) {
             if (model.getFighterFromPosition(row, col).getOwner() == PlayerType.Human){
                 clickOnHumanFighter(row, col);
@@ -294,6 +296,15 @@ public class View {
 
         private void determineSprite(Fighter fighter) {
             if (fighter != null) {
+                AnimatedFighter animatedFighter;
+                if (animatedFighters.containsKey(fighter.getUniqueID())){
+                    animatedFighter = animatedFighters.get(fighter.getUniqueID());
+                } else {
+                    animatedFighter = new AnimatedFighter(fighter, playerIdle);
+                    fighter.setCurrentSprite(animatedFighter.getCurrentSprite());
+                    animatedFighters.put(fighter.getUniqueID(), animatedFighter);
+                }
+
                 if (fighter.getOwner() == PlayerType.Human) {
                     fighter.setCurrentSprite(playerIdle.getCurrentFrame());
                 }
